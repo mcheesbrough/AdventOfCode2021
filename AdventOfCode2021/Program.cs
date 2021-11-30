@@ -13,7 +13,7 @@ namespace AdventOfCode2021
             const string puzzle = "1";
 
             var serviceProvider = SetUpServices(day, puzzle);
-            var puzzleSolver = serviceProvider.GetService<IPuzzleSolver>();
+            var puzzleSolver = GetPuzzleSolver(serviceProvider, day, puzzle);
             var result = puzzleSolver.Run();
             Console.WriteLine($"Answer for puzzle number {puzzle} on day {day} is {result}");
 
@@ -21,19 +21,25 @@ namespace AdventOfCode2021
 
         private static ServiceProvider SetUpServices(string day, string puzzle)
         {
-            var puzzleSolverType = GetPuzzleTypeFromDayAndPuzzleNumber(day, puzzle);
-            if (puzzleSolverType == null) throw new Exception($"No solver found for puzzle on day {day}, number {puzzle}");
             return new ServiceCollection()
-                .AddTransient<IPuzzleSolver, Day1Puzzle1>()
+                .AddTransient<Day1Puzzle1>()
                 .BuildServiceProvider();
+        }
+
+        private static IPuzzleSolver GetPuzzleSolver(ServiceProvider serviceProvider, string day, string puzzle)
+        {
+            var puzzleSolverType = GetPuzzleTypeFromDayAndPuzzleNumber(day, puzzle);
+            if (puzzleSolverType == null) throw new Exception($"No solver type for puzzle on day {day}, number {puzzle}");
+            var puzzleSolver = (IPuzzleSolver)serviceProvider.GetService(puzzleSolverType);
+            if (puzzleSolver == null) throw new Exception($"No solver registered for puzzle on day {day}, number {puzzle}");
+            return puzzleSolver;
         }
 
         private static Type GetPuzzleTypeFromDayAndPuzzleNumber(string day, string puzzle)
         {
             var assembly = typeof(Program).Assembly;
             var type = assembly.GetType($"AdventOfCode2021.Days.Day{day}.Day{day}Puzzle{puzzle}");
-            var types = assembly.GetTypes();
-            return type != null ? type : null;
+            return type;
         }
     }
 
