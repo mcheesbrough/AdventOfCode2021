@@ -23,6 +23,7 @@ namespace AdventOfCode2021
         {
             return new ServiceCollection()
                 .AddTransient<Day1Puzzle1>()
+                .AddTransient<IDepthChangeCalc, ThreeMeasurementDepthChangeCalc>()
                 .BuildServiceProvider();
         }
 
