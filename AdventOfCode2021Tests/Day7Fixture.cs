@@ -13,17 +13,27 @@ namespace AdventOfCode2021Tests
     public class Day7Fixture
     {
         [Test]
-        [InlineAutoMoqData("3, 4, 3, 1, 2", "2,3,2,0,1" )]
+        [InlineAutoMoqData("16,1,2,0,4,2,7,1,2,14", 37 )]
         public void LineCalcsHorizontal(
-            string initial,
-            string expectedNextDay,
-            Something sut)
+            string input,
+            int expectedBestPosition,
+            BestCrabPositionFinder sut)
         {
-            
-            Assert.That(sut.Do("a"), Is.EqualTo("b"));
+            var positions = input.Split(',').Select(int.Parse).ToList();
+            Assert.That(sut.Find(positions), Is.EqualTo(expectedBestPosition));
 
         }
 
+        [Test]
+        [InlineAutoMoqData("16,1,2,0,4,2,7,1,2,14", 168)]
+        public void LineCalcsHorizontal(
+            string input,
+            int expectedBestPosition,
+            BestCrabPositionFinderExponential sut)
+        {
+            var positions = input.Split(',').Select(int.Parse).ToList();
+            Assert.That(sut.Find(positions), Is.EqualTo(expectedBestPosition));
 
+        }
     }
 }

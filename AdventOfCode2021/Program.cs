@@ -47,7 +47,7 @@ namespace AdventOfCode2021
                 .AddTransient<ILineIntersectionFinder, LineIntersectionFinder>()
                 .AddTransient<IIntersectionCounter, IntersectionCounter>()
                 .AddTransient<ILanternFishCalculator, LanternFishCalculator>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IBestCrabPositionFinder, BestCrabPositionFinderExponential>()
                 .BuildServiceProvider();
         }
 

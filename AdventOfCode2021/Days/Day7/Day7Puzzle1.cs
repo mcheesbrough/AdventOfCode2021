@@ -7,10 +7,10 @@ namespace AdventOfCode2021.Days.Day7
 {
     public class Day7Puzzle1: IPuzzleSolver
     {
-        private readonly ISomething _something;
-        public Day7Puzzle1(ISomething something)
+        private readonly IBestCrabPositionFinder _bestCrabPositionFinder;
+        public Day7Puzzle1(IBestCrabPositionFinder bestCrabPositionFinder)
         {
-            _something = something;
+            _bestCrabPositionFinder = bestCrabPositionFinder;
         }
 
         public string Run()
@@ -20,7 +20,8 @@ namespace AdventOfCode2021.Days.Day7
                 .Split(',')
                 .Select(int.Parse)
                 .ToList();
-            throw new NotImplementedException();
+            var result = _bestCrabPositionFinder.Find(input);
+            return result.ToString();
         }
     }
 }
