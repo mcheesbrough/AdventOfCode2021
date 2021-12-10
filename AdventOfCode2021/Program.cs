@@ -59,7 +59,8 @@ namespace AdventOfCode2021
                 .AddTransient<IHeatMapLoader, HeatMapLoader>()
                 .AddTransient<ILowPointFinder, LowPointFinder>()
                 .AddTransient<IBasinFinder, BasinFinder>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<ISyntaxChecker, SyntaxChecker>()
+                .AddTransient<ISyntaxCompleter, SyntaxCompleter>()
                 .BuildServiceProvider();
         }
 

@@ -13,15 +13,91 @@ namespace AdventOfCode2021Tests
     public class Day10Fixture
     {
         [Test]
-        [InlineAutoMoqData("2113",  "0,0;1,0;0,1;1,1", "2,1,1,3")]
-        public void LoadsHeatmap(
-            string input,
-            string expectedCoords,
-            string expectedHeights,
-            Something sut)
-        {                                        
-
+        [InlineAutoMoqData("(}", "}")]
+        [InlineAutoMoqData("(}<", "}")]
+        [InlineAutoMoqData("([]>", ">")]
+        [InlineAutoMoqData("([]{}>", ">")]
+        [InlineAutoMoqData("([]{(>})", ">")]
+        [InlineAutoMoqData("([<}]{(}})", "}")]
+        [InlineAutoMoqData("{([(<{}[<>[]}>{[]{[(<()>",  "}")]
+        public void CanFindInvalidLine(
+            string line,
+            string expectedInvalidChar,
+            SyntaxChecker sut)
+        {
+            var result = sut.FindInvalidCharacter(line);
+            Assert.That(result.Value.ToString(), Is.EqualTo(expectedInvalidChar));
         }
 
+        [Test]
+        [InlineAutoMoqData("[(()[<>])]({[<{<<[]>>(")]
+        public void ReturnsNullForUnfinishedValidLine(
+            string line,
+            SyntaxChecker sut)
+        {
+            var result = sut.FindInvalidCharacter(line);
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        [InlineAutoMoqData("[{}]<<", "[{}]")]
+        public void CanStripOpeningChars(
+            string input,
+            string expected,
+            SyntaxChecker sut)
+        {
+            var result = sut.StripFinalOpeningChars(input.Select(x => new SubChar(x)).ToList());
+            var resultString = result.Aggregate("", (acc, v) => acc += v.Value);
+            Assert.That(resultString, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [InlineAutoMoqData("[]{}", "[],{}")]
+        [InlineAutoMoqData("[{}<>]{<>}", "[{}<>],{<>}")]
+        public void CanFindSections(
+            string input,
+            string expected,
+            SyntaxChecker sut)
+        {
+            var result = sut.FindSections(input.Select(x => new SubChar(x)).ToList());
+            var resultString = string.Join(',', result
+                .Select( x=> x.Aggregate("", (acc, v) => acc += v.Value)));
+            Assert.That(resultString, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [InlineAutoMoqData("[]{", "}")]
+        [InlineAutoMoqData("[({(<(())[]>[[{[]{<()<>>", "}}]])})]")]
+        public void CanComplete(
+            string input,
+            string expected,
+            SyntaxCompleter sut)
+        {
+            var result = sut.Complete(input);
+            var resultString = result
+                .Aggregate("", (acc, v) => acc += v.Value);
+            Assert.That(resultString, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [InlineAutoMoqData(@"[({(<(())[]>[[{[]{<()<>>
+[(()[<>])]({[<{<<[]>>(
+{([(<{}[<>[]}>{[]{[(<()>
+(((({<>}<{<{<>}{[]{[]{}
+[[<[([]))<([[{}[[()]]]
+[{[{({}]{}}([{[{{{}}([]
+{<[[]]>}<{[{[{[]{()[[[]
+[<(<(<(<{}))><([]([]()
+<{([([[(<>()){}]>(<<{{
+<{([{{}}[<[[[<>{}]]]>[]]", 288957)]
+        public void CanCalcCompletion(
+            string input,
+            int expected)
+        {
+            var inputList = input.Split("\r\n").ToList();
+            var sut = new SyntaxCompleter(new SyntaxChecker());
+            var result = sut.CalcCompletionScore(inputList);
+            Assert.That(result, Is.EqualTo(expected));
+        }
     }
 }
