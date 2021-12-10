@@ -2,6 +2,7 @@
 using System;
 using AdventOfCode2021.Days.Day1;
 using AdventOfCode2021.Days.Day10;
+using AdventOfCode2021.Days.Day11;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day3;
 using AdventOfCode2021.Days.Day4;
@@ -41,6 +42,7 @@ namespace AdventOfCode2021
                 .AddTransient<Day8Puzzle1>()
                 .AddTransient<Day9Puzzle1>()
                 .AddTransient<Day10Puzzle1>()
+                .AddTransient<Day11Puzzle1>()
                 .AddTransient<IDepthChangeCalc, ThreeMeasurementDepthChangeCalc>()
                 .AddTransient<IMover, MoverAdvanced>()
                 .AddTransient<IMovementInstructionsParser, MovementInstructionsParser>()
@@ -61,6 +63,7 @@ namespace AdventOfCode2021
                 .AddTransient<IBasinFinder, BasinFinder>()
                 .AddTransient<ISyntaxChecker, SyntaxChecker>()
                 .AddTransient<ISyntaxCompleter, SyntaxCompleter>()
+                .AddTransient<ISomething, Something>()
                 .BuildServiceProvider();
         }
 
