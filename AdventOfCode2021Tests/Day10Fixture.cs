@@ -40,32 +40,6 @@ namespace AdventOfCode2021Tests
         }
 
         [Test]
-        [InlineAutoMoqData("[{}]<<", "[{}]")]
-        public void CanStripOpeningChars(
-            string input,
-            string expected,
-            SyntaxChecker sut)
-        {
-            var result = sut.StripFinalOpeningChars(input.Select(x => new SubChar(x)).ToList());
-            var resultString = result.Aggregate("", (acc, v) => acc += v.Value);
-            Assert.That(resultString, Is.EqualTo(expected));
-        }
-
-        [Test]
-        [InlineAutoMoqData("[]{}", "[],{}")]
-        [InlineAutoMoqData("[{}<>]{<>}", "[{}<>],{<>}")]
-        public void CanFindSections(
-            string input,
-            string expected,
-            SyntaxChecker sut)
-        {
-            var result = sut.FindSections(input.Select(x => new SubChar(x)).ToList());
-            var resultString = string.Join(',', result
-                .Select( x=> x.Aggregate("", (acc, v) => acc += v.Value)));
-            Assert.That(resultString, Is.EqualTo(expected));
-        }
-
-        [Test]
         [InlineAutoMoqData("[]{", "}")]
         [InlineAutoMoqData("[({(<(())[]>[[{[]{<()<>>", "}}]])})]")]
         public void CanComplete(
