@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Linq;
 using AdventOfCode2021.Days.Day9;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day11
 {
-    public interface ITurnRunner
+    public interface IOctopusTurnRunner
     {
         long Run(Map<OctopusPoint> map, int turns);
     }
 
-    public class TurnRunner : ITurnRunner
+    public class OctopusTurnRunner : IOctopusTurnRunner
     {
         private readonly IOctopusTurnProcessor _octopusTurnProcessor;
 
-        public TurnRunner(IOctopusTurnProcessor octopusTurnProcessor)
+        public OctopusTurnRunner(IOctopusTurnProcessor octopusTurnProcessor)
         {
             _octopusTurnProcessor = octopusTurnProcessor;
         }

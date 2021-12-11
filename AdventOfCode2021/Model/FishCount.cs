@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace AdventOfCode2021.Days.Day6
+﻿namespace AdventOfCode2021.Model
 {
     public class FishCount
     {

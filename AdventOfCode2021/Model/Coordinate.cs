@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode2021.Days.Day2
+namespace AdventOfCode2021.Model
 {
     public class Coordinate : IEquatable<Coordinate>, ICloneable
     {
@@ -19,7 +18,7 @@ namespace AdventOfCode2021.Days.Day2
 
         public static Coordinate FromDescription(string description)
         {
-            var parts = description.Split(',').Select(x => int.Parse(x)).ToArray();
+            var parts = description.Split(',').Select(x => int.Parse((string) x)).ToArray();
             if (parts.Length != 2) throw new Exception($"Coordinate description {description} does not have two values");
             return new Coordinate(parts[0], parts[1]);
         }

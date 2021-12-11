@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography.X509Certificates;
 
-namespace AdventOfCode2021.Days.Day4
+namespace AdventOfCode2021.Model
 {
     public class BingoCard
     {

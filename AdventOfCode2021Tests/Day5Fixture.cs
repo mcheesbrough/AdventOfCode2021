@@ -6,6 +6,7 @@ using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day3;
 using AdventOfCode2021.Days.Day4;
 using AdventOfCode2021.Days.Day5;
+using AdventOfCode2021.Model;
 using AutoFixture.NUnit3;
 using Moq;
 using NUnit.Framework;

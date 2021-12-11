@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using AdventOfCode2021.Days.Day11;
 
-namespace AdventOfCode2021.Days.Day9
+namespace AdventOfCode2021.Model
 {
     public class Map<T> where T: IMapPoint, ICloneable
     {

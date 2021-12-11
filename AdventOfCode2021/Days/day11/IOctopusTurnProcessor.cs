@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day9;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day11
 {

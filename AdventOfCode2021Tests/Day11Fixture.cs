@@ -5,6 +5,7 @@ using AdventOfCode2021.Days.Day10;
 using AdventOfCode2021.Days.Day11;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day9;
+using AdventOfCode2021.Model;
 using AutoFixture.NUnit3;
 using Moq;
 using NUnit.Framework;
@@ -115,7 +116,7 @@ namespace AdventOfCode2021Tests
             int turns,
             int expected)
         {
-            var sut = new TurnRunner(new OctopusTurnProcessor());
+            var sut = new OctopusTurnRunner(new OctopusTurnProcessor());
             var inputList = input.Split("\r\n")
                 .ToList();
             var inputMap = BuildMap(inputList);

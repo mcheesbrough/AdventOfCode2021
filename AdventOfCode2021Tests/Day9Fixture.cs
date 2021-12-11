@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day9;
+using AdventOfCode2021.Model;
 using AutoFixture.NUnit3;
 using Moq;
 using NUnit.Framework;

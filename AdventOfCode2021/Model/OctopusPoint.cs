@@ -1,6 +1,6 @@
 ﻿using AdventOfCode2021.Days.Day2;
 
-namespace AdventOfCode2021.Days.Day11
+namespace AdventOfCode2021.Model
 {
     public class OctopusPoint: IMapPoint
     {

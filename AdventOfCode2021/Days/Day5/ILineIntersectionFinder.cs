@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode2021.Days.Day2;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day5
 {

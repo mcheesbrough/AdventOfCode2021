@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Schema;
 using AdventOfCode2021.General;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day8
 {

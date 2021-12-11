@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using AdventOfCode2021.General;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day2
 {

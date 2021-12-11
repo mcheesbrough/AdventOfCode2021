@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdventOfCode2021.Days.Day10
+namespace AdventOfCode2021.Model
 {
     public class SubChar
     {

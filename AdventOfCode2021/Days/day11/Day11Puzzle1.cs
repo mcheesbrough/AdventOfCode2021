@@ -6,15 +6,16 @@ using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day5;
 using AdventOfCode2021.Days.Day9;
 using AdventOfCode2021.General;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day11
 {
     public class Day11Puzzle1: IPuzzleSolver
     {
-        private readonly ITurnRunner _turnRunner;
-        public Day11Puzzle1(ITurnRunner turnRunner)
+        private readonly IOctopusTurnRunner _octopusTurnRunner;
+        public Day11Puzzle1(IOctopusTurnRunner octopusTurnRunner)
         {
-            _turnRunner = turnRunner;
+            _octopusTurnRunner = octopusTurnRunner;
         }
 
         public string Run()
@@ -23,7 +24,7 @@ namespace AdventOfCode2021.Days.Day11
                 .ReadAllLines(@"C:\\aoc\day11\11_1.txt")
                 .ToList();
             var map = BuildMap(input);
-            var flashes = _turnRunner.Run(map, 500);
+            var flashes = _octopusTurnRunner.Run(map, 500);
             return flashes.ToString();
 
         }

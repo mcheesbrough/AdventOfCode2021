@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AdventOfCode2021.Days.Day8
+namespace AdventOfCode2021.Model
 {
     public class Digit : IEquatable<Digit>
     {

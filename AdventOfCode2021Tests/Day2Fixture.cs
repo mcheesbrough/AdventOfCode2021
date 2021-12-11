@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode2021.Days.Day1;
 using AdventOfCode2021.Days.Day2;
+using AdventOfCode2021.Model;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 

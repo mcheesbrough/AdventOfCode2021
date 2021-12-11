@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using AdventOfCode2021.Model;
 
 namespace AdventOfCode2021.Days.Day8
 {

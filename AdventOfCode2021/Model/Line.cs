@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using AdventOfCode2021.Days.Day2;
 
-namespace AdventOfCode2021.Days.Day5
+namespace AdventOfCode2021.Model
 {
     public class Line
     {
