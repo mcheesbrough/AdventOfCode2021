@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days.Day2
 {
-    public class Coordinate : IEquatable<Coordinate>
+    public class Coordinate : IEquatable<Coordinate>, ICloneable
     {
  
 
@@ -42,6 +42,11 @@ namespace AdventOfCode2021.Days.Day2
         public override int GetHashCode()
         {
             return HashCode.Combine(X, Y);
+        }
+
+        public object Clone()
+        {
+            return new Coordinate(X, Y);
         }
 
         public static bool operator ==(Coordinate left, Coordinate right)

@@ -19,7 +19,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            const string day = "10";
+            const string day = "11";
             const string puzzle = "1";
 
             var serviceProvider = SetUpServices(day, puzzle);
@@ -63,7 +63,8 @@ namespace AdventOfCode2021
                 .AddTransient<IBasinFinder, BasinFinder>()
                 .AddTransient<ISyntaxChecker, SyntaxChecker>()
                 .AddTransient<ISyntaxCompleter, SyntaxCompleter>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IOctopusTurnProcessor, OctopusTurnProcessor>()
+                .AddTransient<ITurnRunner, TurnRunner>()
                 .BuildServiceProvider();
         }
 

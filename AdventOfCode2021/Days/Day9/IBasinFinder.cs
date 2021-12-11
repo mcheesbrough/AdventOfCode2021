@@ -5,7 +5,7 @@ namespace AdventOfCode2021.Days.Day9
 {
     public interface IBasinFinder
     {
-        List<int> Find(Map map);
+        List<int> Find(Map<HeatMapPoint> map);
     }
 
     public class BasinFinder : IBasinFinder
@@ -17,7 +17,7 @@ namespace AdventOfCode2021.Days.Day9
             _lowPointFinder = lowPointFinder;
         }
 
-        public List<int> Find(Map map)
+        public List<int> Find(Map<HeatMapPoint> map)
         {
             var lows = _lowPointFinder.Find(map);
             var basinSizes = new List<int>();
@@ -30,15 +30,15 @@ namespace AdventOfCode2021.Days.Day9
             return basinSizes;
         }
 
-        private List<HeatMapPoint> FindAdjacentsInBasin(Map map, List<HeatMapPoint> pointsFound, List<HeatMapPoint> pointsChecked, HeatMapPoint pointToCheck)
+        private List<HeatMapPoint> FindAdjacentsInBasin(Map<HeatMapPoint> map, List<HeatMapPoint> pointsFound, List<HeatMapPoint> pointsChecked, HeatMapPoint pointToCheck)
         {
-            if (pointsChecked.Select(x => x.Point).Contains(pointToCheck.Point)) return pointsFound;
+            if (pointsChecked.Select(x => x.Coordinate).Contains(pointToCheck.Coordinate)) return pointsFound;
             pointsChecked.Add(pointToCheck);
             pointsFound.Add(pointToCheck);
             var adjacentsToLow = map.AdjacentPoints(pointToCheck).Where(x => x.Height < 9);
             foreach (var point in adjacentsToLow)
             {
-                if (!pointsFound.Select(x => x.Point).Contains(point.Point))
+                if (!pointsFound.Select(x => x.Coordinate).Contains(point.Coordinate))
                 {
                     pointsFound = FindAdjacentsInBasin(map, pointsFound, pointsChecked, point);
                 }

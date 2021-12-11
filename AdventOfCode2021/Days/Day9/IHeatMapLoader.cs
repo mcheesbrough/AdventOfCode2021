@@ -7,12 +7,12 @@ namespace AdventOfCode2021.Days.Day9
 {
     public interface IHeatMapLoader
     {
-        Map Load(List<string> input);
+        Map<HeatMapPoint> Load(List<string> input);
     }
 
     public class HeatMapLoader : IHeatMapLoader
     {
-        public Map Load(List<string> input)
+        public Map<HeatMapPoint> Load(List<string> input)
         {
             var points = new List<HeatMapPoint>();
             for (var y = 0; y < input.Count; y++)
@@ -24,7 +24,7 @@ namespace AdventOfCode2021.Days.Day9
                 }
             }
 
-            return new Map(points, input[0].Length, input.Count);
+            return new Map<HeatMapPoint>(points, input[0].Length, input.Count);
         }
     }
 }

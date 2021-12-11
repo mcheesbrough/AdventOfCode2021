@@ -34,13 +34,13 @@ namespace AdventOfCode2021Tests
             }
 
             var result = sut.Load(inputList).Points;
-            Assert.That(result[0].Point, Is.EqualTo(expectedPoints[0].Point));
+            Assert.That(result[0].Coordinate, Is.EqualTo(expectedPoints[0].Coordinate));
             Assert.That(result[0].Height, Is.EqualTo(expectedPoints[0].Height));
-            Assert.That(result[1].Point, Is.EqualTo(expectedPoints[1].Point));
+            Assert.That(result[1].Coordinate, Is.EqualTo(expectedPoints[1].Coordinate));
             Assert.That(result[1].Height, Is.EqualTo(expectedPoints[1].Height));
-            Assert.That(result[2].Point, Is.EqualTo(expectedPoints[2].Point));
+            Assert.That(result[2].Coordinate, Is.EqualTo(expectedPoints[2].Coordinate));
             Assert.That(result[2].Height, Is.EqualTo(expectedPoints[2].Height));
-            Assert.That(result[3].Point, Is.EqualTo(expectedPoints[3].Point));
+            Assert.That(result[3].Coordinate, Is.EqualTo(expectedPoints[3].Coordinate));
             Assert.That(result[3].Height, Is.EqualTo(expectedPoints[3].Height));
 
         }
@@ -63,11 +63,11 @@ namespace AdventOfCode2021Tests
             var expectedPoints = expectedPointsString.Split(';')
                 .Select(Coordinate.FromDescription)
                 .ToList();
-            var map = new Map(inputList, width, height);
+            var map = new Map<HeatMapPoint>(inputList, width, height);
             var result = map.AdjacentPoints(testPoint);
 
             Assert.That(result.Count, Is.EqualTo(expectedPoints.Count));
-            var resultCoords = result.Select(x => x.Point);
+            var resultCoords = result.Select(x => x.Coordinate);
             Assert.That(resultCoords, Is.EquivalentTo(expectedPoints));
         }
 
@@ -89,7 +89,7 @@ namespace AdventOfCode2021Tests
                 points.Add(new HeatMapPoint(inputList[i], int.Parse(heights[i].ToString())));
             }
 
-            var map = new Map(points, 3, 3);
+            var map = new Map<HeatMapPoint>(points, 3, 3);
 
             var expectLows = expectLowsString.Split(';')
                 .Select(Coordinate.FromDescription)
@@ -97,7 +97,7 @@ namespace AdventOfCode2021Tests
             var result = sut.Find(map);
 
             Assert.That(result.Count, Is.EqualTo(expectLows.Count));
-            var resultCoords = result.Select(x => x.Point);
+            var resultCoords = result.Select(x => x.Coordinate);
             Assert.That(resultCoords, Is.EquivalentTo(expectLows));
         }
 
@@ -120,7 +120,7 @@ namespace AdventOfCode2021Tests
                 points.Add(new HeatMapPoint(inputList[i], int.Parse(heights[i].ToString())));
             }
 
-            var map = new Map(points, 3, 3);
+            var map = new Map<HeatMapPoint>(points, 3, 3);
 
             var result = sut.Find(map)[0];
 

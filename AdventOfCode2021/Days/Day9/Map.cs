@@ -1,31 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using AdventOfCode2021.Days.Day11;
 
 namespace AdventOfCode2021.Days.Day9
 {
-    public class Map
+    public class Map<T> where T: IMapPoint, ICloneable
     {
         private readonly int _width;
         private readonly int _height;
 
-        public Map(List<HeatMapPoint> points, int width, int height)
+        public Map(List<T> points, int width, int height)
         {
             _width = width;
             _height = height;
             Points = points;
         }
 
-        public List<HeatMapPoint> AdjacentPoints(HeatMapPoint point)
+        public List<T> AdjacentPoints(T point)
         {
-            var adjacent = new List<HeatMapPoint>();
-            if (point.Point.X - 1 >= 0) adjacent.Add(Points.First(p => p.Point.X == point.Point.X - 1 && p.Point.Y == point.Point.Y));
-            if (point.Point.X + 1 < _width) adjacent.Add(Points.First(p => p.Point.X == point.Point.X + 1 && p.Point.Y == point.Point.Y));
-            if (point.Point.Y - 1 >= 0) adjacent.Add(Points.First(p => p.Point.X == point.Point.X && p.Point.Y == point.Point.Y - 1));
-            if (point.Point.Y + 1 < _height) adjacent.Add(Points.First(p => p.Point.X == point.Point.X && p.Point.Y == point.Point.Y + 1));
+            var adjacent = new List<T>();
+            if (point.Coordinate.X - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y));
+            if (point.Coordinate.X + 1 < _width) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y));
+            if (point.Coordinate.Y - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y - 1));
+            if (point.Coordinate.Y + 1 < _height) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y + 1));
             return adjacent;
         }
 
-        public List<HeatMapPoint> Points { get; }
+        public List<T> AdjacentIncludingDiagonalPoints(T point)
+        {
+            var adjacent = new List<T>();
+            if (point.Coordinate.X - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y));
+            if (point.Coordinate.X + 1 < _width) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y));
+            if (point.Coordinate.Y - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y - 1));
+            if (point.Coordinate.Y + 1 < _height) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y + 1));
+            if (point.Coordinate.X - 1 >= 0 && point.Coordinate.Y - 1 >= 0) 
+                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y - 1));
+            if (point.Coordinate.X + 1 < _width && point.Coordinate.Y + 1 < _height) 
+                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y + 1));
+            if (point.Coordinate.Y - 1 >= 0 && point.Coordinate.X + 1 < _width) 
+                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y - 1));
+            if (point.Coordinate.Y + 1 < _height && point.Coordinate.X - 1 >= 0) 
+                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y + 1));
+            return adjacent;
+        }
+
+        public Map<T> Clone()
+        {
+            var clonedPoints = Points.ConvertAll(p => p.Clone());
+            return new Map<T>(Points.ToList(), _width, _height);
+        }
+
+        public List<T> Points { get; }
     }
 }
