@@ -8,10 +8,12 @@ namespace AdventOfCode2021.Days.Day12
 {
     public class Day12Puzzle1: IPuzzleSolver
     {
-        private readonly ISomething _something;
-        public Day12Puzzle1(ISomething something)
+        private readonly ICaveLoader _caveLoader;
+        private readonly ICavePathFinder _cavePathFinder;
+        public Day12Puzzle1(ICaveLoader caveLoader, ICavePathFinder cavePathFinder)
         {
-            _something = something;
+            _caveLoader = caveLoader;
+            _cavePathFinder = cavePathFinder;
         }
 
         public string Run()
@@ -19,7 +21,10 @@ namespace AdventOfCode2021.Days.Day12
             var input = File
                 .ReadAllLines(@"C:\\aoc\day12\12_1.txt")
                 .ToList();
-            throw new NotImplementedException();
+            var caves = _caveLoader.Load(input);
+            var paths = _cavePathFinder.Find(caves, 2);
+            var numPaths = paths.Count;
+            return numPaths.ToString();
 
         }
         

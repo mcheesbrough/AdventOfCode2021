@@ -67,7 +67,8 @@ namespace AdventOfCode2021
                 .AddTransient<ISyntaxCompleter, SyntaxCompleter>()
                 .AddTransient<IOctopusTurnProcessor, OctopusTurnProcessor>()
                 .AddTransient<IOctopusTurnRunner, OctopusTurnRunner>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<ICaveLoader, CaveLoader>()
+                .AddTransient<ICavePathFinder, CavePathFinder>()
                 .BuildServiceProvider();
         }
 
