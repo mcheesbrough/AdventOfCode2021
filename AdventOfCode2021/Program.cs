@@ -4,6 +4,7 @@ using AdventOfCode2021.Days.Day1;
 using AdventOfCode2021.Days.Day10;
 using AdventOfCode2021.Days.Day11;
 using AdventOfCode2021.Days.Day12;
+using AdventOfCode2021.Days.Day13;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day3;
 using AdventOfCode2021.Days.Day4;
@@ -20,7 +21,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            const string day = "12";
+            const string day = "13";
             const string puzzle = "1";
 
             var serviceProvider = SetUpServices(day, puzzle);
@@ -45,6 +46,7 @@ namespace AdventOfCode2021
                 .AddTransient<Day10Puzzle1>()
                 .AddTransient<Day11Puzzle1>()
                 .AddTransient<Day12Puzzle1>()
+                .AddTransient<Day13Puzzle1>()
                 .AddTransient<IDepthChangeCalc, ThreeMeasurementDepthChangeCalc>()
                 .AddTransient<IMover, MoverAdvanced>()
                 .AddTransient<IMovementInstructionsParser, MovementInstructionsParser>()
@@ -69,6 +71,7 @@ namespace AdventOfCode2021
                 .AddTransient<IOctopusTurnRunner, OctopusTurnRunner>()
                 .AddTransient<ICaveLoader, CaveLoader>()
                 .AddTransient<ICavePathFinder, CavePathFinder>()
+                .AddTransient<ISomething, Something>()
                 .BuildServiceProvider();
         }
 
