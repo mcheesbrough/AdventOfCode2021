@@ -71,7 +71,8 @@ namespace AdventOfCode2021
                 .AddTransient<IOctopusTurnRunner, OctopusTurnRunner>()
                 .AddTransient<ICaveLoader, CaveLoader>()
                 .AddTransient<ICavePathFinder, CavePathFinder>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IFolder, Folder>()
+                .AddTransient<IInstructionPaperLoader, InstructionPaperLoader>()
                 .BuildServiceProvider();
         }
 
