@@ -15,7 +15,6 @@ namespace AdventOfCode2021.Model
         {
             Width = width;
             Height = height;
-            Points = points;
             PointsDictionary = points.ToDictionary(c => c.Coordinate, p => p);
         }
 
@@ -33,29 +32,25 @@ namespace AdventOfCode2021.Model
 
         public List<T> AdjacentIncludingDiagonalPoints(T point)
         {
-            var adjacent = new List<T>();
-            if (point.Coordinate.X - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y));
-            if (point.Coordinate.X + 1 < Width) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y));
-            if (point.Coordinate.Y - 1 >= 0) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y - 1));
-            if (point.Coordinate.Y + 1 < Height) adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X && p.Coordinate.Y == point.Coordinate.Y + 1));
+            var adjacent = AdjacentPoints(point);
             if (point.Coordinate.X - 1 >= 0 && point.Coordinate.Y - 1 >= 0) 
-                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y - 1));
+                adjacent.Add(PointsDictionary[new Coordinate(point.Coordinate.X - 1, point.Coordinate.Y - 1)]);
             if (point.Coordinate.X + 1 < Width && point.Coordinate.Y + 1 < Height) 
-                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y + 1));
+                adjacent.Add(PointsDictionary[new Coordinate(point.Coordinate.X + 1, point.Coordinate.Y + 1)]);
             if (point.Coordinate.Y - 1 >= 0 && point.Coordinate.X + 1 < Width) 
-                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X + 1 && p.Coordinate.Y == point.Coordinate.Y - 1));
+                adjacent.Add(PointsDictionary[new Coordinate(point.Coordinate.X + 1, point.Coordinate.Y - 1)]);
             if (point.Coordinate.Y + 1 < Height && point.Coordinate.X - 1 >= 0) 
-                adjacent.Add(Points.First(p => p.Coordinate.X == point.Coordinate.X - 1 && p.Coordinate.Y == point.Coordinate.Y + 1));
+                adjacent.Add(PointsDictionary[new Coordinate(point.Coordinate.X - 1,  point.Coordinate.Y + 1)]);
             return adjacent;
         }
 
         public Map<T> Clone()
         {
-            var clonedPoints = Points.ConvertAll(p => p.Clone());
-            return new Map<T>(Points.ToList(), Width, Height);
+            var clonedPoints = Points.ConvertAll(p => (T)p.Clone());
+            return new Map<T>(clonedPoints, Width, Height);
         }
 
-        public List<T> Points { get; }
+        public List<T> Points => PointsDictionary.Values.ToList();
         public Dictionary<Coordinate, T> PointsDictionary { get; set; }
 
         public string Print()

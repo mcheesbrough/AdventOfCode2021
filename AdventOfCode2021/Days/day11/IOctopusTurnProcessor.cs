@@ -19,7 +19,7 @@ namespace AdventOfCode2021.Days.Day11
         {
             var resultMap = map.Clone();
             IncrementPoints(resultMap.Points);
-            Flash(map, turn);
+            Flash(resultMap, turn);
             ResetPoints(resultMap.Points, turn);
             return resultMap;
         }
