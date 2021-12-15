@@ -6,5 +6,6 @@ namespace AdventOfCode2021.Model
     public interface IMapPoint: ICloneable
     {
         Coordinate Coordinate { get; }
+        string ToString();
     }
 }

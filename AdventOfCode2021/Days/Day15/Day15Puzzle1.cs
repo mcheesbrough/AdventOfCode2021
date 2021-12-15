@@ -9,17 +9,23 @@ namespace AdventOfCode2021.Days.Day15
 {
     public class Day15Puzzle1: IPuzzleSolver
     {
-        private readonly ISomething _something;
-        public Day15Puzzle1(ISomething something)
+        private readonly IChitonPathFinder _chitonPathFinder;
+        private readonly IChitonMapLoader _loader;
+        public Day15Puzzle1(IChitonPathFinder chitonPathFinder, IChitonMapLoader loader)
         {
-            _something = something;
+            _chitonPathFinder = chitonPathFinder;
+            _loader = loader;
         }
 
         public string Run()
         {
-            var inputString = File
-                .ReadAllText(@"C:\\aoc\day14\14_1.txt");
-            throw new NotImplementedException();
+            var input = File
+                .ReadAllLines(@"C:\\aoc\day15\15_1.txt")
+                .ToList();
+            var map = _loader.Load(input);
+            var bigMap = _loader.CombineMaps(map, 5);
+            var result = _chitonPathFinder.Find(bigMap, new Coordinate(0, 0));
+            return result.ToString();
         }
 
     }

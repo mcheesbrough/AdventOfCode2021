@@ -79,7 +79,8 @@ namespace AdventOfCode2021
                 .AddTransient<IInstructionPaperLoader, InstructionPaperLoader>()
                 .AddTransient<IPairInsertionRuleLoader, PairInsertionRuleLoader>()
                 .AddTransient<IPolymerInserter, PolymerInserter>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IChitonPathFinder, ChitonPathFinder>()
+                .AddTransient<IChitonMapLoader, ChitonMapLoader>()
                 .BuildServiceProvider();
         }
 
