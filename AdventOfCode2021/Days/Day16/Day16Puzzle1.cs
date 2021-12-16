@@ -9,18 +9,19 @@ namespace AdventOfCode2021.Days.Day16
 {
     public class Day16Puzzle1: IPuzzleSolver
     {
-        private readonly ISomething _something;
-        public Day16Puzzle1(ISomething something)
+        private readonly IPacketParser _packetParser;
+        public Day16Puzzle1(IPacketParser packetParser)
         {
-            _something = something;
+            _packetParser = packetParser;
         }
 
         public string Run()
         {
             var input = File
-                .ReadAllLines(@"C:\\aoc\day16\16_1.txt")
-                .ToList();
-            throw new NotImplementedException();
+                .ReadAllText(@"C:\\aoc\day16\16_1.txt");
+            var packets = _packetParser.Parse(Binary.BinaryStringFromHex(input));
+
+            return packets.Execute().ToString();
         }
 
     }

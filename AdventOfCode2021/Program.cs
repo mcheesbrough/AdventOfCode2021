@@ -84,7 +84,7 @@ namespace AdventOfCode2021
                 .AddTransient<IPolymerInserter, PolymerInserter>()
                 .AddTransient<IChitonPathFinder, ChitonPathFinder>()
                 .AddTransient<IChitonMapLoader, ChitonMapLoader>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IPacketParser, PacketParser>()
                 .BuildServiceProvider();
         }
 
