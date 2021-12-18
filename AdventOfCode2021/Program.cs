@@ -87,7 +87,8 @@ namespace AdventOfCode2021
                 .AddTransient<IChitonPathFinder, ChitonPathFinder>()
                 .AddTransient<IChitonMapLoader, ChitonMapLoader>()
                 .AddTransient<IPacketParser, PacketParser>()
-                .AddTransient<ISomething, Something>()
+                .AddTransient<IProbeInputReader, ProbeInputReader>()
+                .AddTransient<IProbeCalculator, ProbeCalculator>()
                 .BuildServiceProvider();
         }
 
