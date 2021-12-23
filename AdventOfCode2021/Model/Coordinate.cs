@@ -23,6 +23,11 @@ namespace AdventOfCode2021.Model
             return new Coordinate(parts[0], parts[1]);
         }
 
+        public override string ToString()
+        {
+            return $"({X},{Y})";
+        }
+
         public bool Equals(Coordinate other)
         {
             if (ReferenceEquals(null, other)) return false;
