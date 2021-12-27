@@ -13,6 +13,9 @@ using AdventOfCode2021.Days.Day18;
 using AdventOfCode2021.Days.Day19;
 using AdventOfCode2021.Days.Day2;
 using AdventOfCode2021.Days.Day20;
+using AdventOfCode2021.Days.Day21;
+using AdventOfCode2021.Days.Day22;
+using AdventOfCode2021.Days.Day23;
 using AdventOfCode2021.Days.Day3;
 using AdventOfCode2021.Days.Day4;
 using AdventOfCode2021.Days.Day5;
@@ -29,7 +32,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            const string day = "20";
+            const string day = "23";
             const string puzzle = "1";
 
             var serviceProvider = SetUpServices(day, puzzle);
@@ -62,6 +65,9 @@ namespace AdventOfCode2021
                 .AddTransient<Day18Puzzle1>()
                 .AddTransient<Day19Puzzle1>()
                 .AddTransient<Day20Puzzle1>()
+                .AddTransient<Day21Puzzle1>()
+                .AddTransient<Day22Puzzle1>()
+                .AddTransient<Day23Puzzle1>()
                 .AddTransient<IDepthChangeCalc, ThreeMeasurementDepthChangeCalc>()
                 .AddTransient<IMover, MoverAdvanced>()
                 .AddTransient<IMovementInstructionsParser, MovementInstructionsParser>()
@@ -99,6 +105,10 @@ namespace AdventOfCode2021
                 .AddTransient<IScannerComparer, ScannerComparer>()
                 .AddTransient<IImageLoader, ImageLoader>()
                 .AddTransient<IImageProcessor, ImageProcessor>()
+                .AddTransient<IDiracDice, DiracDice>()
+                .AddTransient<IReactorRebootLoader, ReactorRebootLoader>()
+                .AddTransient<IReactorRebooter, ReactorRebooter>()
+                .AddTransient<IAmphipodArranger, AmphipodArranger>()
                 .BuildServiceProvider();
         }
 

@@ -135,11 +135,16 @@ namespace AdventOfCode2021.Model
             }
         }
 
+        public object Clone()
+        {
+            return new Coordinate3D(X, Y, Z);
+        }
+
         public bool Equals(Coordinate3D other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return X == other.X && Y == other.Y;
+            return X == other.X && Y == other.Y && Z == other.Z;
         }
 
         public override bool Equals(object obj)
@@ -147,17 +152,12 @@ namespace AdventOfCode2021.Model
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((Coordinate3D)obj);
+            return Equals((Coordinate3D) obj);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(X, Y);
-        }
-
-        public object Clone()
-        {
-            return new Coordinate3D(X, Y, Z);
+            return HashCode.Combine(X, Y, Z);
         }
 
         public static bool operator ==(Coordinate3D left, Coordinate3D right)
@@ -169,7 +169,5 @@ namespace AdventOfCode2021.Model
         {
             return !Equals(left, right);
         }
-
-
     }
 }

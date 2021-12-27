@@ -28,6 +28,9 @@ namespace AdventOfCode2021.Model
             return $"({X},{Y})";
         }
 
+        public int DistanceFrom(Coordinate c) => Math.Abs(X - c.X) + Math.Abs(Y - c.Y);
+
+
         public bool Equals(Coordinate other)
         {
             if (ReferenceEquals(null, other)) return false;
