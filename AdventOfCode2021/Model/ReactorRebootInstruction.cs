@@ -2,13 +2,13 @@
 {
     public class ReactorRebootInstruction
     {
-        public ReactorRebootInstruction(ReactorRebootCube cube, bool turnOn)
+        public ReactorRebootInstruction(ReactorRebootCuboid cuboid, bool turnOn)
         {
-            Cube = cube;
+            Cuboid = cuboid;
             TurnOn = turnOn;
         }
 
-        public ReactorRebootCube Cube { get; }
+        public ReactorRebootCuboid Cuboid { get; }
         public bool TurnOn { get; }
     }
 }

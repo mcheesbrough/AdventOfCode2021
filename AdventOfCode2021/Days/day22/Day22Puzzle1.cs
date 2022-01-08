@@ -23,8 +23,8 @@ namespace AdventOfCode2021.Days.Day22
                 .ReadAllLines(@"C:\\aoc\day22\22_1.txt")
                 .ToList();
             var instructions = _loader.Load(input);
-            var cubes = _rebooter.Reboot(instructions);
-            return cubes.Count.ToString();
+            var cubesCount = _rebooter.Reboot(instructions);
+            return cubesCount.ToString();
         }
 
     }

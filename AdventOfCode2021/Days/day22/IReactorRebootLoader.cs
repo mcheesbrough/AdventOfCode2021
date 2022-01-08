@@ -29,9 +29,9 @@ namespace AdventOfCode2021.Days.Day22
                 var start = new Coordinate3D(xAndYs[0][0], xAndYs[1][0], xAndYs[2][0]);
                 var end = new Coordinate3D(xAndYs[0][1], xAndYs[1][1], xAndYs[2][1]);
                 var instruction = new ReactorRebootInstruction(
-                    new ReactorRebootCube(start, end),
+                    new ReactorRebootCuboid(start, end),
                     parts[0] == "on");
-                if (discardOutside50 && ((start.X < -50 || start.X > 50))) continue;
+                //if (discardOutside50 && ((start.X < -50 || start.X > 50))) continue;
                 instructions.Add(instruction);
             }
 
