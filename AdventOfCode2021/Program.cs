@@ -34,7 +34,7 @@ namespace AdventOfCode2021
     {
         static void Main(string[] args)
         {
-            const string day = "22";
+            const string day = "21";
             const string puzzle = "1";
 
             var serviceProvider = SetUpServices(day, puzzle);

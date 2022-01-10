@@ -16,9 +16,9 @@ namespace AdventOfCode2021Tests
         [InlineAutoMoqData(1, 1)]
         [InlineAutoMoqData(2, 2)]
         [InlineAutoMoqData(6, 6)]
-        [InlineAutoMoqData(7, 1)]
-        [InlineAutoMoqData(12, 6)]
-        [InlineAutoMoqData(13, 1)]
+        [InlineAutoMoqData(101, 1)]
+        [InlineAutoMoqData(106, 6)]
+        [InlineAutoMoqData(201, 1)]
 
         public void CanRoll(
             int numRolls,

@@ -18,12 +18,11 @@ namespace AdventOfCode2021.Days.Day21
         public string Run()
         {
             var input = File
-                .ReadAllLines(@"C:\\aoc\day21\test.txt");
+                .ReadAllLines(@"C:\\aoc\day21\21_1.txt");
 
             var player1Start = int.Parse(input[0].Last().ToString());
             var player2Start = int.Parse(input[1].Last().ToString());
             var highestScore = _diracDice.PlayQuantum(player1Start, player2Start, 21);
-
             return highestScore.ToString();
         }
 

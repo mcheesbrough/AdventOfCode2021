@@ -30,13 +30,13 @@ namespace AdventOfCode2021.Days.Day21
 
             while (gameStates.Any(g => !g.Key.SomeoneWon))
             {
-                QuantumTurn(gameStates, true);
+                gameStates = QuantumTurn(gameStates, true);
                 Console.WriteLine($"Number in play after p1 {gameStates.Sum(g => g.Value)}");
                 //foreach (var gameState in gameStates)
                 //{
                 //    Console.WriteLine($"{gameState.Key.Player1Score} {gameState.Key.Player2Score} {gameState.Value}");
                 //}
-                QuantumTurn(gameStates, false);
+                gameStates = QuantumTurn(gameStates, false);
                 Console.WriteLine($"Number in play after p2 {gameStates.Sum(g => g.Value)}");
                 //foreach (var gameState in gameStates)
                 //{
@@ -56,12 +56,16 @@ namespace AdventOfCode2021.Days.Day21
             var player2Wins = gameStates
                 .Where(g => g.Key.Player2Won)
                 .Sum(g => g.Value);
+            Console.WriteLine($"P1 wins {player1Wins}");
+            Console.WriteLine($"P2 wins {player2Wins}");
+
             return player1Wins > player2Wins ? player1Wins : player2Wins;
         }
 
-        private void QuantumTurn(Dictionary<DiracDiceGameState, long> states, bool isPlayer1)
+        private Dictionary<DiracDiceGameState, long> QuantumTurn(Dictionary<DiracDiceGameState, long> states, bool isPlayer1)
         {
-            var statesToRemove = new List<DiracDiceGameState>();
+            var newStates = states.Where(g => g.Key.SomeoneWon)
+                .ToDictionary(p => p.Key, p=> p.Value);
             var gameStatesStillInPlay = states.Where(g => !g.Key.SomeoneWon).ToList();
             foreach (var state in gameStatesStillInPlay)
             {
@@ -75,27 +79,26 @@ namespace AdventOfCode2021.Days.Day21
                         {
                             var newState = oldState.Clone();
 
-                            newState.Move(isPlayer1, i+j+k);
-                            //newState.Move(isPlayer1, i + j);
-
-                        if (states.ContainsKey(newState))
-                            {
-                                states[newState] += states[oldState];
-                            }
-                            else
-                            {
-                                states.Add(newState, states[oldState]);
-                            }
+                            newState.Move(isPlayer1, i + j + k);
+                            AddState(newStates, newState, states[oldState]);
                         }
                     }
                 }
-                statesToRemove.Add(oldState);
                 
             }
 
-            foreach (var stateToRemove in statesToRemove)
+            return newStates;
+        }
+
+        private void AddState(Dictionary<DiracDiceGameState, long> states, DiracDiceGameState state, long value)
+        {
+            if (states.ContainsKey(state))
             {
-                states.Remove(stateToRemove);
+                states[state] += value;
+            }
+            else
+            {
+                states.Add(state, value);
             }
 
         }
